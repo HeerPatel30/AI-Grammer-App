@@ -250,7 +250,7 @@ export default function Home() {
                     Login
                   </button>
                   <button
-                    onClick={() => navigate("/signup")}
+                    onClick={() => navigate("/login")}
                     className="px-4 py-1 rounded-lg bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white font-medium transition"
                   >
                     Signup
