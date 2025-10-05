@@ -3,6 +3,8 @@ import "dotenv/config";
 import connectDB from './Database/Dbconnect.js';
 import airouter from './Routes/Airoute.js';
 import cors from 'cors';
+import userroutes from './Routes/Userroute.js';
+
 const app = express()
 const PORT = process.env.PORT || 3000;
 
@@ -21,7 +23,7 @@ app.get('/', (req, res) => {
 connectDB()
 //  routes 
 app.use('/api/ai', airouter);
-
+app.use('/api/user', userroutes);
 
 //  start the  server
 app.listen(PORT, () => {

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { connectRedis } from "../Redis/redisconnect.js";
 
 const connectDB = async () => {
   try {
@@ -7,6 +8,7 @@ const connectDB = async () => {
       useUnifiedTopology: true,
     });
     console.log("MongoDB connected");
+    return connectRedis(); // connect to Redis after DB
   } catch (error) {
     console.error("MongoDB connection error:", error);
     process.exit(1);
