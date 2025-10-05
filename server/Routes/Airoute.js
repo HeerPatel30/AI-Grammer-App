@@ -1,9 +1,10 @@
 import express from 'express';
-import { correctText } from '../Controller/Airoute.js';
+import { chathistory, correctText } from '../Controller/Airoute.js';
+import { limitUsage } from '../Middleware/middleware.js';
 
-let airouter = express.Router();
+const airouter = express.Router();
 
-airouter.post("/correct", correctText)
-
+airouter.post("/correct", limitUsage, correctText);
+airouter.post("/history", chathistory);
 
 export default airouter;
