@@ -1,12 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Config from "../Config/Config";
 
 const config = new Config();
 
 export default function LoginSignup() {
   const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useState(true);
+  const location = useLocation();
+  
+  // Check if mode is passed from navigation, default to login
+  const [isLogin, setIsLogin] = useState(
+    location.state?.mode === "signup" ? false : true
+  );
+  
   const [formData, setFormData] = useState({
     username: "",
     name: "",
@@ -21,6 +27,13 @@ export default function LoginSignup() {
     type: "",
   });
   const canvasRef = useRef(null);
+
+  // Update isLogin when location state changes
+  useEffect(() => {
+    if (location.state?.mode) {
+      setIsLogin(location.state.mode === "login");
+    }
+  }, [location.state]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -213,7 +226,7 @@ export default function LoginSignup() {
           localStorage.setItem("uid", data.uid);
           localStorage.setItem("unqkey", data.unqkey);
           showNotification(data.message || "Signup successful!", "success");
-          setTimeout(() => navigate("/login"), 1000);
+          setTimeout(() => navigate("/login", { state: { mode: "login" } }), 1000);
         } else {
           showNotification(data.message || "Signup failed!", "error");
         }
@@ -307,7 +320,6 @@ export default function LoginSignup() {
             className="w-full p-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-400"
           />
 
-          {/* 🌟 Forgot Password Link */}
           {isLogin && (
             <div className="flex justify-end mt-2">
               <span

@@ -150,7 +150,7 @@ async function forgotpassword(req,res,next)
         //  all field required
         if(((email && email.trim() === "") || (phoneno && phoneno.trim() === "")) && ((!newpassword && newpassword.trim() === "") || (!confirmnewpassword && confirmnewpassword.trim() === ""))) 
         {
-            return res.status(400).json({ message: "All fields are required" });
+            return res.status(400).json({ success: false, message: "All fields are required" });
         }
       
         //  checking if user exists
@@ -164,27 +164,32 @@ async function forgotpassword(req,res,next)
         }
         const existinguser = await user.findOne(pipeline);
         if (!existinguser) {
-          return res.status(401).json({ message: "User does not exists" });
+          return res.status(401).json({ success: false, message: "User does not exists" });
         }
         if(newpassword !== confirmnewpassword)
         {
-            return res.status(400).json({message : "New password and confirm new password must be same."})
+            return res.status(400).json({success: false, message : "New password and confirm new password must be same."})
         }
         let encpassword = md5(newpassword);
         let updateuser = await user.updateOne(pipeline, { $set: { password: encpassword } });
         if(updateuser.modifiedCount === 0)
         {
-            return res.status(500).json({message : "Error occurred, please try again."})
+            return res.status(500).json({success: false, message : "Error occurred, please try again."})
         }
-        return res.status(200).json({message :"Password updated successfully."}); 
+        return res.status(200).json({success: true , message :"Password updated successfully."}); 
 
     } catch (error) {
-        return res.status(500).json({ message: error.message });
+        return res.status(500).json({ success: false, message: error.message });
     }
 }
 async function sendotp(req,res,next){
   try {
   let email = req.body.email;
+  let userdata = await user.findOne({email:email});
+  if(!userdata)
+  {
+    return res.status(404).json({ success: false, message: "User does not exist" });
+  }
   let otp = generatesixdigitsid();
 
    await client.setEx(`otp:${email}`, 300, otp);

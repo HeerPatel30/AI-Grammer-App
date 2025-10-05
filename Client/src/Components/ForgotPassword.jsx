@@ -150,13 +150,18 @@ export default function ForgotPassword() {
         body: JSON.stringify({ email }),
       });
       const data = await response.json();
-      if (response.ok) {
+      // Check both response.ok AND data.success
+      if (response.ok && data.success === true) {
         showNotification(data.message || "OTP sent successfully!", "success");
         startTimer();
-        setStep(2);
-      } else showNotification(data.message || "Failed to send OTP!", "error");
+        setStep(2); // Only move to step 2 if both conditions are true
+      } else {
+        showNotification(data.message || "Failed to send OTP!", "error");
+        // Stay on step 1
+      }
     } catch {
       showNotification("Something went wrong!", "error");
+      // Stay on step 1
     }
   };
 
@@ -170,12 +175,17 @@ export default function ForgotPassword() {
         body: JSON.stringify({ email, otp }),
       });
       const data = await response.json();
-      if (response.ok) {
+      // Check both response.ok AND data.success
+      if (response.ok && data.success === true) {
         showNotification(data.message || "OTP verified successfully!", "success");
-        setStep(3);
-      } else showNotification(data.message || "Invalid OTP!", "error");
+        setStep(3); // Only move to step 3 if both conditions are true
+      } else {
+        showNotification(data.message || "Invalid OTP!", "error");
+        // Stay on step 2
+      }
     } catch {
       showNotification("Something went wrong!", "error");
+      // Stay on step 2
     }
   };
 
@@ -197,12 +207,17 @@ export default function ForgotPassword() {
         }),
       });
       const data = await response.json();
-      if (response.ok) {
+      // Check both response.ok AND data.success
+      if (response.ok && data.success === true) {
         showNotification(data.message || "Password reset successful!", "success");
         setTimeout(() => navigate("/login"), 1500);
-      } else showNotification(data.message || "Failed to reset password!", "error");
+      } else {
+        showNotification(data.message || "Failed to reset password!", "error");
+        // Stay on step 3
+      }
     } catch {
       showNotification("Something went wrong!", "error");
+      // Stay on step 3
     }
   };
 
@@ -210,7 +225,7 @@ export default function ForgotPassword() {
     const m = Math.floor(seconds / 60);
     const s = seconds % 60;
     return `${m}:${s < 10 ? "0" : ""}${s}`;
-    };
+  };
 
   return (
     <div className="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 to-blue-50 overflow-hidden">
