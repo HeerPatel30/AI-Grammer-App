@@ -13,7 +13,7 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin:[ 'http://localhost:5173','https://ai-grammer-app.vercel.app/'] ,// allow your frontend origin
+  origin:[ 'http://localhost:5173','https://ai-grammer-app.vercel.app'] ,// allow your frontend origin
   credentials: true
 }));
 app.get('/', (req, res) => {
