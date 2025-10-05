@@ -1,6 +1,6 @@
 export default class Config {
   constructor() {
-    console.log("Config initialized with endpoint:", process.env.REACT_APP_ENDPOINT);
-    this.endpoint = process.env.REACT_APP_ENDPOINT || "http://localhost:3031/api/";
+    console.log("Config initialized with endpoint:", import.meta.env.VITE_ENDPOINT);
+    this.endpoint = import.meta.env.VITE_ENDPOINT;
   }
 }
