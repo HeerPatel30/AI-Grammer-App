@@ -2032,6 +2032,31 @@ server/node_modules/wrappy/wrappy.js
 server/.env
 views/index.js
 public/ai.png
+<<<<<<< HEAD
+=======
+server/node_modules/charenc/charenc.js
+server/node_modules/charenc/LICENSE.mkd
+server/node_modules/charenc/package.json
+server/node_modules/charenc/README.js
+server/node_modules/crypt/crypt.js
+server/node_modules/crypt/LICENSE.mkd
+server/node_modules/crypt/package.json
+server/node_modules/crypt/README.mkd
+server/node_modules/is-buffer/index.js
+server/node_modules/is-buffer/LICENSE
+server/node_modules/is-buffer/package.json
+server/node_modules/is-buffer/README.md
+server/node_modules/is-buffer/test/basic.js
+server/node_modules/md5/.travis.yml
+server/node_modules/md5/LICENSE
+server/node_modules/md5/md5.js
+server/node_modules/md5/package.json
+server/node_modules/md5/README.md
+server/node_modules/md5/test.js
+server/node_modules/md5/webpack.config.js
+server/node_modules/md5/demo/index.html
+server/node_modules/md5/dist/md5.min.js
+>>>>>>> e240f69a1755f1547285f0248f6dfcf064d50fe7
 server/node_modules/.bin/semver
 server/node_modules/.bin/semver.cmd
 server/node_modules/.bin/semver.ps1
@@ -4309,20 +4334,26 @@ server/node_modules/buffer-equal-constant-time/LICENSE.txt
 server/node_modules/buffer-equal-constant-time/package.json
 server/node_modules/buffer-equal-constant-time/README.md
 server/node_modules/buffer-equal-constant-time/test.js
+<<<<<<< HEAD
 server/node_modules/charenc/charenc.js
 server/node_modules/charenc/LICENSE.mkd
 server/node_modules/charenc/package.json
 server/node_modules/charenc/README.js
+=======
+>>>>>>> e240f69a1755f1547285f0248f6dfcf064d50fe7
 server/node_modules/cluster-key-slot/.eslintrc
 server/node_modules/cluster-key-slot/index.d.ts
 server/node_modules/cluster-key-slot/LICENSE
 server/node_modules/cluster-key-slot/package.json
 server/node_modules/cluster-key-slot/README.md
 server/node_modules/cluster-key-slot/lib/index.js
+<<<<<<< HEAD
 server/node_modules/crypt/crypt.js
 server/node_modules/crypt/LICENSE.mkd
 server/node_modules/crypt/package.json
 server/node_modules/crypt/README.mkd
+=======
+>>>>>>> e240f69a1755f1547285f0248f6dfcf064d50fe7
 server/node_modules/ecdsa-sig-formatter/CODEOWNERS
 server/node_modules/ecdsa-sig-formatter/LICENSE
 server/node_modules/ecdsa-sig-formatter/package.json
@@ -4330,11 +4361,14 @@ server/node_modules/ecdsa-sig-formatter/README.md
 server/node_modules/ecdsa-sig-formatter/src/ecdsa-sig-formatter.d.ts
 server/node_modules/ecdsa-sig-formatter/src/ecdsa-sig-formatter.js
 server/node_modules/ecdsa-sig-formatter/src/param-bytes-for-alg.js
+<<<<<<< HEAD
 server/node_modules/is-buffer/index.js
 server/node_modules/is-buffer/LICENSE
 server/node_modules/is-buffer/package.json
 server/node_modules/is-buffer/README.md
 server/node_modules/is-buffer/test/basic.js
+=======
+>>>>>>> e240f69a1755f1547285f0248f6dfcf064d50fe7
 server/node_modules/jsonwebtoken/decode.js
 server/node_modules/jsonwebtoken/index.js
 server/node_modules/jsonwebtoken/LICENSE
@@ -4391,6 +4425,7 @@ server/node_modules/lodash.once/index.js
 server/node_modules/lodash.once/LICENSE
 server/node_modules/lodash.once/package.json
 server/node_modules/lodash.once/README.md
+<<<<<<< HEAD
 server/node_modules/md5/.travis.yml
 server/node_modules/md5/LICENSE
 server/node_modules/md5/md5.js
@@ -4400,6 +4435,8 @@ server/node_modules/md5/test.js
 server/node_modules/md5/webpack.config.js
 server/node_modules/md5/demo/index.html
 server/node_modules/md5/dist/md5.min.js
+=======
+>>>>>>> e240f69a1755f1547285f0248f6dfcf064d50fe7
 server/node_modules/nodemailer/.gitattributes
 server/node_modules/nodemailer/.ncurc.js
 server/node_modules/nodemailer/.prettierrc.js
