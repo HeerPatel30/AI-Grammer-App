@@ -106,12 +106,13 @@ async function limitUsage(req, res, next) {
         });
       }
 
+      console.log("Device ID:", deviceId);
       const key = `usage:device:${deviceId}`;
       limit = 5;
 
       let count = await client.get(key);
       count = count ? parseInt(count) : 0;
-
+      console.log(count)
       if (count >= limit) {
         return res.status(429).json({
           message: "Daily limit reached. Please sign up to continue.",

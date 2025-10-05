@@ -155,6 +155,17 @@ export default function Home() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Get or create device ID for anonymous users
+  const getOrCreateDeviceId = () => {
+    let deviceId = localStorage.getItem('deviceId');
+    if (!deviceId) {
+      // Generate unique device ID: dev_timestamp_randomstring
+      deviceId = `dev_${Date.now()}_${Math.random().toString(36).substring(2, 15)}`;
+      localStorage.setItem('deviceId', deviceId);
+    }
+    return deviceId;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!text.trim()) return toast.error("Please enter text!");
@@ -165,6 +176,7 @@ export default function Home() {
       const token = localStorage.getItem("token");
       const uid = localStorage.getItem("uid");
       const unqkey = localStorage.getItem("unqkey");
+      const deviceId = getOrCreateDeviceId(); // Get or create device ID
 
       const res = await fetch(`${config.endpoint}ai/correct`, {
         method: "POST",
@@ -172,7 +184,8 @@ export default function Home() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token || ""}`,
           uid: uid || "",
-          unqkey: unqkey || ""
+          unqkey: unqkey || "",
+          "x-device-id": deviceId // Add device ID for rate limiting
         },
         body: JSON.stringify({ text })
       });
