@@ -25,7 +25,7 @@ async function correctText(req,res,next)
         let payload = {
           originalText: formdata,
           correctedText: correctedText,
-          userId : req.uid || null
+          userId : req.headers['uid'] || null
         }
         let savechat = await aichat.create(payload);
         await savechat.save();
