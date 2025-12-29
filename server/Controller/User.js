@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { Generatekey, generatesixdigitsid, transporter } from "../Config/Config.js";
+import { Generatekey, generatesixdigitsid, sendemail } from "../Config/Config.js";
 import user from "../Models/user.js";
 import md5 from "md5";
 import Token from "../Models/token.js";
@@ -202,7 +202,7 @@ async function sendotp(req,res,next){
   // });
   let info = await sendemail(email, "Your OTP Code", `Your OTP code is ${otp} . It is valid for 5 minutes.`);       
   let updateuser = await user.updateOne({email:email},{$set : { otp : otp }});
-  if(info.success)
+  if(info.accepted.length > 0)
   {
      return res.json({ success: true, message: "OTP sent successfully" });
   }
@@ -211,7 +211,6 @@ async function sendotp(req,res,next){
     return res.json({ success: false, message: error.message });
   }
 }
-
 
 async function verifyotp(req,res,next) {
   try {

@@ -54,4 +54,4 @@ function Generatekey(length) {
 
 
 
-export {generatesixdigitsid, Generatekey,transporter};
+export {generatesixdigitsid, Generatekey,sendemail};
