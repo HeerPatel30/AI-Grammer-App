@@ -202,7 +202,7 @@ async function sendotp(req,res,next){
   // });
   let info = await sendemail(email, "Your OTP Code", `Your OTP code is ${otp} . It is valid for 5 minutes.`);       
   let updateuser = await user.updateOne({email:email},{$set : { otp : otp }});
-  if(info.accepted.length > 0)
+  if(info.success)
   {
      return res.json({ success: true, message: "OTP sent successfully" });
   }
