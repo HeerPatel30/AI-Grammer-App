@@ -194,14 +194,15 @@ async function sendotp(req,res,next){
 
    await client.setEx(`otp:${email}`, 300, otp);
   //  send otp to email
-  let info = await transporter.sendMail({
-    from: "heerpatel879@gmail.com",
-    to: email,
-    subject: "Your OTP Code",
-    text: `Your OTP code is ${otp} . It is valid for 5 minutes.`,
-  });
+  // let info = await transporter.sendMail({
+  //   from: "heerpatel879@gmail.com",
+  //   to: email,
+  //   subject: "Your OTP Code",
+  //   text: `Your OTP code is ${otp} . It is valid for 5 minutes.`,
+  // });
+  let info = await sendemail(email, "Your OTP Code", `Your OTP code is ${otp} . It is valid for 5 minutes.`);       
   let updateuser = await user.updateOne({email:email},{$set : { otp : otp }});
-  if(info.accepted.length > 0)
+  if(info.success)
   {
      return res.json({ success: true, message: "OTP sent successfully" });
   }
@@ -210,6 +211,7 @@ async function sendotp(req,res,next){
     return res.json({ success: false, message: error.message });
   }
 }
+
 
 async function verifyotp(req,res,next) {
   try {
